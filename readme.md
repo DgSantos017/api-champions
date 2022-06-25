@@ -17,7 +17,7 @@
 
 ## 2 - Sobre a Aplicação
 
-Esse é um sistema de campeonato mata-mata, onde é possível cadastrar times, campeonatos e simular todas as fases até ver quem vai ser o grande campeão. Para fins de registro, vai ser possível analisar todo o histórico do torneios realizados.
+Esse é um sistema de campeonato mata-mata, onde é possível cadastrar times, campeonatos e simular todas as fases até ver quem vai ser o grande campeão. Para fins de registro, vai ser possível analisar todo o histórico dos torneios realizados.
 
 ## 3 - Como rodar o backend localmente - passo a passo
 
@@ -50,11 +50,11 @@ ou com ssh <br />
 git clone git@github.com:DgSantos017/api-champions.git
 ```
 
-- obs: quando voce fez o Fork, se voce alterou o nome do repositório, substitua também o nome acima `rental_x` pelo nome escolheu na hora do Fork.
+- obs: quando voce fez o Fork, se voce alterou o nome do repositório, substitua também o nome acima `api-champions` pelo nome escolheu na hora do Fork.
 
 ### 3.5 - Entre no diretório do projeto
 ```bash
-cd rental_x
+cd api-champions
 ```
 
 ### 3.6 - iniciar e levantar o servidor backend, junto com os containers Docker
@@ -90,7 +90,7 @@ docker compose up -d
 ### 3.9 - para confirmação, rode o comando abaixo
 
 ```bash 
-docker logs rentx -f
+docker logs api-champions -f
 ```
 
 #### 3.9.1 - se estiver tudo ok, a mensagem abaixo vai aparecer
@@ -107,88 +107,57 @@ yarn test
 
 ## 5 - Mapeamento de requisitos
 
-### 5.1 - Cadastro de carro
+## 5.1 - Times
 
-**Requisitos Funcionais**
-- deve ser possível cadastrar um novo carro
+### CADASTRO 
 
-**Regras de negócio**
-- Não deve ser possível cadastrar um carro com uma placa já existente
-- O carro deve ser cadastrado, por padrão, com disponibilidade
-- O usuário responsável pelo cadastro deve ser um user admin
+- deve permitir cadastrar uma quantidade ilimitada no sistema em geral
 
-### 5.2 - Listagem de carros
+- deve conter o nome do time e iniciais (com exatos 3 caracteres)
 
-**Requisitos Funcionais**
-- deve ser possível listar todos os carros disponíveis
-- deve ser possível listar todos os carros disponíveis pelo nome da categoria, marca e carro
+### EDIÇÃO
+- deve ser possível editar um dos 2 campos citados acima ou todos de uma vez
 
-### 5.3 - Cadastro de especificação no carro
+### LISTAGEM
 
-**Requisitos Funcionais**
-- deve ser possível cadastrar uma especificação para um carro
+- deve ser possível listar todos os times cadastrados no sistema
 
-**Regras de negócio**
-- Não deve ser possível cadastrar uma especificação para um carro não cadastrado
-- Não deve ser possível cadastrar uma especificação já existente para o mesmo carro
-- O usuário responsável pelo cadastro deve ser um user admin
+-  deve ser possível listar todos os times cadastrados em um campeonato especifico
 
-### 5.4 - Cadastro de imagens do carro
-
-**Requisitos Funcionais**
-- deve ser possível cadastrar a imagem do carro
-- deve ser possível cadastrar mais de uma imagem por carro
+- deve ser possível listar um time em especifico no sistema geral ou de um campeonato em especifico
 
 
-**Requisitos NÃO Funcionail**
-- Ultilizar a biblioteca Multer para upload dos arquivos
+### EXCLUSÃO
+- deve ser possível excluir um time do sistema
+- ao excluir um time do sistema, ele precisa também ser excluido do campeonato que ainda não iniciou
+- ao excluir um time do sistema, não pode ser excluido o registro de partidas que participou
 
-**Regras de negócio**
-- O usuário responsável pelo cadastro deve ser um user admin
+## 5.2 - Campeonatos
 
-### 5.5 - Aluguel de carro
+### CADASTRO
+- deve conter obrigatóriamente 3 campos (Nome, descrição e premiação)
 
-**Requisitos Funcionais**
-- deve ser possível cadastrar um aluguel
+### LISTAGEM
+- deve ser possível listar um em especifico ou todos de uma vez
 
-**Regras de negócio**
-- O aluguel deve ter duração minima de 24 horas
-- Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usúario ou carro
-- o usuário deve estar logado na aplicação
-- Ao realizar um algguel, o status do carro deverá ser alterado para indisponível
+### EDIÇÃO
+- deve ser possível editar um dos 3 dados ou todos de uma vez
 
-### 5.6 - Devolução de carro
+### INICIO DAS DISPUTAS
 
-**Requisitos Funcionais**
-- deve ser possível realizar a devolução de um carro
+- deve ser possível vincular os times cadastrados no sistema ao novo campeonato
 
-**Regras de negócio**
-- Se o carro for devolvido com menos de 24hrs, deverá ser cobrado diária completa
-- Ao realizar a devolução, o carro deverá ser liberado para outro aluguel
-- Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel
-- Ao realizar a devolução, deverá ser calculado o total do aluguel
-- Caso o horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso
-- Caso haja multa, deverá ser somado ao total do aluguel
-- - o usuário deve estar logado na aplicação
+- Um campeonato só poderá iniciar se existir uma quantidade de 2^n times no mesmo
 
-### 5.7 - Listagem de aluguéis para usuário
+### RESULTADOS PARA INFORMAR EM UM CAMPEONATO
 
-**Requisitos Funcionais**
-- deve ser possível realizar a busca de todos os aluguéis para o usuário
+- Histórico das partidas com os dados abaixo de cada uma em especifica
 
-**Regras de negócio**
-- o usário deve estar logado na aplicação
+- times, resultados, vencedores
+- campeão do campeonato
+- premiação
 
-### 5.8 - Listagem de aluguéis para usuário
-
-**Requisitos Funcionais**
-- deve ser possível o usuario recuperar a senha informando o E-Mail
-- o usuario deve receber um e-mail com o passo a passo para a recuperação de senha
-- o usuario deve inserir uma nova senha
-
-**Regras de negócio**
-- o usário precisa informar uma nova senha
-- o link enviado para a recuperação deve expirar em 3 horas
+- obs: o critério para todas as partidas vai ser somente a sorte :)
 
 ## 6 - Comandos docker
 
