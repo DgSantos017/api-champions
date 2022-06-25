@@ -1,8 +1,8 @@
 {
-  "name": "api_champions",
+  "name": "api-champions",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/DgSantos017/api_champions.git",
+  "repository": "https://github.com/DgSantos017/api-champions.git",
   "author": "Diogo <diogosantosferreira.01@gmail.com>",
   "license": "MIT",
   "scripts": {
