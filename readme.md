@@ -11,9 +11,10 @@
 - 8 - Tecnologias ultilizadas
 - 9 - Contatos do desenvolvedor
 
+![diagrama_er](./entidade_relacionamento.png)
+
 ## 1 - Link da documentação/endpoints da API rest full - SWAGGER
 [http://localhost:3333/api-docs/](http://localhost:3333/api-docs/)
-
 
 ## 2 - Sobre a Aplicação
 
