@@ -14,6 +14,7 @@ interface IChampionshipRepository {
   numberTeamsBase2(number_teams: number): Promise<boolean>
   list(): Promise<Championship[]> 
   findById(id: string): Promise<Championship>
+  deleteChampionship(id: string): Promise<void>
 }
 
 export { IChampionshipRepository }

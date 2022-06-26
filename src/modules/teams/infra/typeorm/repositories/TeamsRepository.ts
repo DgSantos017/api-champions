@@ -52,6 +52,12 @@ class TeamsRepository implements ITeamsRepository {
 		const team = await this.repository.findOne(initials)
 		return team
 	}
+
+	async deleteTeam(initials: string): Promise<void> {
+		await this.repository.delete(initials)
+	}
+
+	
 }
 
 export { TeamsRepository }

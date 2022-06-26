@@ -2,7 +2,6 @@ import { getRepository, Repository } from 'typeorm'
 import { Championship } from '../entities/ Championship'
 import { IChampionshipRepository, ICreateChampionship } from './interfaces/IChampionshipsRepository'
 
-
 class ChampionshipsRepository implements IChampionshipRepository {
 
 	private repository: Repository<Championship>
@@ -51,6 +50,10 @@ class ChampionshipsRepository implements IChampionshipRepository {
 	async findById(id: string): Promise<Championship> {
 		const championship = await this.repository.findOne(id)
 		return championship
+	}
+
+	async deleteChampionship(id: string): Promise<void> {
+		await this.repository.delete(id)
 	}
 
 }

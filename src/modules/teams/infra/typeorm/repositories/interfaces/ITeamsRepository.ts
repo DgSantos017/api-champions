@@ -14,6 +14,8 @@ interface ITeamsRepository {
   nameLimitedTo23Letters(name: string): Promise<boolean>
   list(): Promise<Team[]> 
   findByInitials(initials: string): Promise<Team>
+  deleteTeam(initials: string): Promise<void> 
+  
 }
 
 export { ITeamsRepository }
