@@ -9,9 +9,14 @@ export class RegisterTeam1656193604919 implements MigrationInterface {
 					name: 'teams',
 					columns: [
 						{
+							name: 'id',
+							type: 'uuid',
+							isPrimary: true,
+							isUnique: true
+						},
+						{
 							name: 'initials',
 							type: 'varchar',
-							isPrimary: true,
 							isUnique: true
 						},
 						{

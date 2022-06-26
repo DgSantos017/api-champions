@@ -10,12 +10,11 @@ interface ITeamsRepository {
   register(data: ICreateTeam): Promise<Team>
   findByNameTeam(name: string): Promise<Team>
   findByInitialsTeam(initials: string): Promise<Team>
-  threeLetterInitials(initials: string): Promise<boolean>
-  nameLimitedTo23Letters(name: string): Promise<boolean>
+  limitedNumberLetters(initials: string, name: string): Promise<boolean>
   list(): Promise<Team[]> 
-  findByInitials(initials: string): Promise<Team>
+  findById(id: string): Promise<Team>
   deleteTeam(initials: string): Promise<void> 
-  
+  updateTeam(id: string, initials: string, name:string): Promise<Team>
 }
 
 export { ITeamsRepository }

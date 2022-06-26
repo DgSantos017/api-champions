@@ -31,14 +31,9 @@ class RegisterTeamUseCase {
 			throw new AppError('Team name already exists', 409)
 		}
 
-		const threeLetters =  await this.teamsRepository.threeLetterInitials(initialsUppercase)
-		if(threeLetters === false){
-			throw new AppError('the initials of each team must contain exactly 3 letters')
-		}
-
-		const nameLimited =  await this.teamsRepository.nameLimitedTo23Letters(firstLetterUppercase)
-		if(nameLimited === false){
-			throw new AppError('a team can have a maximum of 23 letters')
+		const limitedNumber =  await this.teamsRepository.limitedNumberLetters(initialsUppercase, firstLetterUppercase)
+		if(limitedNumber === false){
+			throw new AppError('the initial team acronyms must be exactly 3 characters long and the team name cannot exceed 25 characters')
 		}
 
 		const team = await this.teamsRepository.register({ initials: initialsUppercase, name: firstLetterUppercase, number_wins: 0 })

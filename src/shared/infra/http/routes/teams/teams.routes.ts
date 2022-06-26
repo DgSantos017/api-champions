@@ -1,19 +1,23 @@
 import { Router } from 'express'
 import { DeleteTeamController } from '../../../../../modules/teams/useCases/deleteTeam/DeleteTeamController'
-import { ListTeamByInitialsController } from '../../../../../modules/teams/useCases/listTeamByInitials/ListTeamByInitialsController'
+import { ListTeamByIdController } from '../../../../../modules/teams/useCases/listTeamById/ListTeamByIdController'
 import { ListTeamsController } from '../../../../../modules/teams/useCases/listTeams/ListTeamsController'
 import { RegisterTeamController } from '../../../../../modules/teams/useCases/registerTeam/RegisterTeamController'
+import { UpdateTeamController } from '../../../../../modules/teams/useCases/updateTeam/UpdateTeamController'
 
 const teamsRoutes = Router()
 
 const registerTeamController = new RegisterTeamController()
 const listTeamsController = new ListTeamsController()
-const listTeamByIdController = new ListTeamByInitialsController()
+const listTeamByIdController = new ListTeamByIdController()
+const updateTeamController = new UpdateTeamController()
 const deleteTeamController = new DeleteTeamController()
 
 teamsRoutes.post('/', registerTeamController.handle)
 teamsRoutes.get('/', listTeamsController.handle)
-teamsRoutes.get('/:initials', listTeamByIdController.handle)
-teamsRoutes.delete('/:initials', deleteTeamController.handle)
+teamsRoutes.get('/:id', listTeamByIdController.handle)
+teamsRoutes.put('/:id', updateTeamController.handle)
+teamsRoutes.delete('/:id', deleteTeamController.handle)
+
 
 export { teamsRoutes }

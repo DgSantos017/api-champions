@@ -4,21 +4,21 @@ import { Team } from '../../infra/typeorm/entities/Team'
 import { ITeamsRepository } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
 
 @injectable()
-class ListTeamByInitialsUseCase {
+class ListTeamByIdUseCase {
 	constructor(
     @inject('TeamsRepository')
     private teamsRepository: ITeamsRepository
 	){}
   
-	async execute(initials: string): Promise<Team>{
+	async execute(id: string): Promise<Team>{
 		
-		const teamByInitials = await this.teamsRepository.findByInitials(initials)
+		const teamById = await this.teamsRepository.findById(id)
 
-		if(!teamByInitials){
+		if(!teamById){
 			throw new AppError('team does not exists', 404)
 		}
 
-		return teamByInitials
+		return teamById
 	}
 }
-export { ListTeamByInitialsUseCase }
+export { ListTeamByIdUseCase }

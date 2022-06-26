@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe'
+import { validate } from 'uuid'
 import { AppError } from '../../../../shared/erros/Apperror'
 import { ITeamsRepository } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
 
@@ -9,15 +10,23 @@ class DeleteTeamUseCase {
     private teamsRepository: ITeamsRepository
 	){}
   
-	async execute(initials: string): Promise<void>{
+	async execute(id: string): Promise<void>{
 		
-		const teamByInitials = await this.teamsRepository.findByInitials(initials)
-
-		if(!teamByInitials){
+		const uuidValidate = uuid => {
+			return validate(uuid)
+		}
+	
+		if(!uuidValidate(id)){
 			throw new AppError('team does not exists', 404)
 		}
 
-		await this.teamsRepository.deleteTeam(initials)
+		const teamById = await this.teamsRepository.findById(id)
+
+		if(!teamById){
+			throw new AppError('team does not exists', 404)
+		}
+
+		await this.teamsRepository.deleteTeam(id)
 	
 	}
 }

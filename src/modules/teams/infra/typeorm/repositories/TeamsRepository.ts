@@ -2,6 +2,9 @@ import { getRepository, Repository } from 'typeorm'
 import { Team } from '../entities/Team'
 import { ICreateTeam, ITeamsRepository } from './interfaces/ITeamsRepository'
 
+
+
+
 class TeamsRepository implements ITeamsRepository {
 
 	private repository: Repository<Team>
@@ -26,30 +29,13 @@ class TeamsRepository implements ITeamsRepository {
 		return nameTeam
 	}
 
-	async threeLetterInitials(initials: string): Promise<boolean> {
-		
-		if(initials.length === 3){
-			return true
-		} else{
-			return false
-		}
-	}
-
-	async nameLimitedTo23Letters(name: string): Promise<boolean> {
-		if(name.length > 23){
-			return false
-		} else{
-			return true
-		}
-	}
-
 	async list(): Promise<Team[]> {
 		const teams = await this.repository.find()
 		return teams
 	}
 
-	async findByInitials(initials: string): Promise<Team> {
-		const team = await this.repository.findOne(initials)
+	async findById(id: string): Promise<Team> {
+		const team = await this.repository.findOne(id)
 		return team
 	}
 
@@ -57,6 +43,21 @@ class TeamsRepository implements ITeamsRepository {
 		await this.repository.delete(initials)
 	}
 
+	async limitedNumberLetters(initials: string, name: string): Promise<boolean> {
+		if(initials.length === 3 && name.length < 26){
+			return true
+		} else{
+			return false
+		}
+	}
+
+	async updateTeam(id: string, initials: string, name: string): Promise<Team> {
+		
+		// const team = await this.repository.findOne({ where: { id } })
+		const teamUpdate = this.repository.save({ id, initials, name })
+
+		return teamUpdate
+	}
 	
 }
 

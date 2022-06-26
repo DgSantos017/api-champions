@@ -15,6 +15,7 @@ interface IChampionshipRepository {
   list(): Promise<Championship[]> 
   findById(id: string): Promise<Championship>
   deleteChampionship(id: string): Promise<void>
+  updateChampionship(id: string, initials: string, name:string): Promise<Championship> 
 }
 
 export { IChampionshipRepository }
