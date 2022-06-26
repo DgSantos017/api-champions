@@ -48,7 +48,7 @@ class TeamsRepository implements ITeamsRepository {
 		return teams
 	}
 
-	async findById(initials: string): Promise<Team> {
+	async findByInitials(initials: string): Promise<Team> {
 		const team = await this.repository.findOne(initials)
 		return team
 	}

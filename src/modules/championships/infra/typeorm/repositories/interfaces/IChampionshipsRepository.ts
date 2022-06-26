@@ -13,6 +13,7 @@ interface IChampionshipRepository {
   nameLimitedTo23Letters(name: string): Promise<boolean>
   numberTeamsBase2(number_teams: number): Promise<boolean>
   list(): Promise<Championship[]> 
+  findById(id: string): Promise<Championship>
 }
 
 export { IChampionshipRepository }

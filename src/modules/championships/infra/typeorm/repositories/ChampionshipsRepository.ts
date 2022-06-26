@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm'
 import { Championship } from '../entities/ Championship'
 import { IChampionshipRepository, ICreateChampionship } from './interfaces/IChampionshipsRepository'
 
+
 class ChampionshipsRepository implements IChampionshipRepository {
 
 	private repository: Repository<Championship>
@@ -44,6 +45,11 @@ class ChampionshipsRepository implements IChampionshipRepository {
 
 	async list(): Promise<Championship[]> {
 		const championship = await this.repository.find()
+		return championship
+	}
+
+	async findById(id: string): Promise<Championship> {
+		const championship = await this.repository.findOne(id)
 		return championship
 	}
 
