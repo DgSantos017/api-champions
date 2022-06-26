@@ -5,6 +5,6 @@ import { teamsRoutes } from './teams/teams.routes'
 const router = Router()
 
 router.use('/teams', teamsRoutes)
-router.use('/championship', championshipRoutes)
+router.use('/championships', championshipRoutes)
 
 export { router }

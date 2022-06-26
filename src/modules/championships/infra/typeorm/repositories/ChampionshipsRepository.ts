@@ -42,6 +42,11 @@ class ChampionshipsRepository implements IChampionshipRepository {
 		}
 	}
 
+	async list(): Promise<Championship[]> {
+		const championship = await this.repository.find()
+		return championship
+	}
+
 }
 
 export { ChampionshipsRepository }
