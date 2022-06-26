@@ -9,7 +9,7 @@ class TeamsRepository implements ITeamsRepository {
 	constructor() {
 		this.repository = getRepository(Team)
 	}
-
+	
 	async register({ initials, name, number_wins }: ICreateTeam): Promise<Team> {
 		const team = this.repository.create({ initials, name, number_wins })
 		await this.repository.save(team)
@@ -41,6 +41,11 @@ class TeamsRepository implements ITeamsRepository {
 		} else{
 			return true
 		}
+	}
+
+	async list(): Promise<Team[]> {
+		const teams = await this.repository.find()
+		return teams
 	}
 }
 

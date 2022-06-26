@@ -12,6 +12,7 @@ interface ITeamsRepository {
   findByInitialsTeam(initials: string): Promise<Team>
   threeLetterInitials(initials: string): Promise<boolean>
   nameLimitedTo23Letters(name: string): Promise<boolean>
+  list(): Promise<Team[]> 
 }
 
 export { ITeamsRepository }
