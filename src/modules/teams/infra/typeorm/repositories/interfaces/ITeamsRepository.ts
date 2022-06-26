@@ -1,6 +1,6 @@
 import { Team } from '../../entities/Team'
 
-interface ICreateTeam{
+export interface ICreateTeam{
   initials: string
   name: string
   number_wins: number

@@ -1,12 +1,6 @@
 import { getRepository, Repository } from 'typeorm'
 import { Team } from '../entities/Team'
-import { ITeamsRepository } from './interfaces/ITeamsRepository'
-
-interface ICreateTeam {
-	initials: string
-	name: string
-	number_wins: number
-}
+import { ICreateTeam, ITeamsRepository } from './interfaces/ITeamsRepository'
 
 class TeamsRepository implements ITeamsRepository {
 
