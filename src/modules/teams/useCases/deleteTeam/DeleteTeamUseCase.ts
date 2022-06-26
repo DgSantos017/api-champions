@@ -12,16 +12,12 @@ class DeleteTeamUseCase {
   
 	async execute(id: string): Promise<void>{
 		
-		const uuidValidate = uuid => {
-			return validate(uuid)
-		}
-	
+		const uuidValidate = uuid => validate(uuid)
 		if(!uuidValidate(id)){
 			throw new AppError('team does not exists', 404)
 		}
 
 		const teamById = await this.teamsRepository.findById(id)
-
 		if(!teamById){
 			throw new AppError('team does not exists', 404)
 		}

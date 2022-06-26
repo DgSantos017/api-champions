@@ -19,5 +19,4 @@ teamsRoutes.get('/:id', listTeamByIdController.handle)
 teamsRoutes.put('/:id', updateTeamController.handle)
 teamsRoutes.delete('/:id', deleteTeamController.handle)
 
-
 export { teamsRoutes }
