@@ -31,7 +31,7 @@
               }
           },
             "responses": {
-                "201": { "description": "Hello" },
+                "201": { "description": "Created" },
                 "400": { "description": "incorrect request" }
             }
         },
@@ -40,7 +40,7 @@
             "summary": "List Teams",
             "description": "Route for list teams",
             "responses": {
-                "200": { "description": "Hello" }
+                "200": { "description": "List all" }
             }
         }
             
@@ -48,7 +48,7 @@
     "/teams/{id}": {
         "get": {
             "tags": ["Team"],
-            "summary": "List Team byn ID",
+            "summary": "List Team by ID",
             "description": "Route for list teams",
             "parameters": [{"in": "path", "name": "id", "schema": {
                 "type": "string"
@@ -86,6 +86,103 @@
                               
                               "initials": "CRF",
                               "name": "Clube Regatas Flamengo"
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "200": { "description": "updated" },
+                "404": {"description": "Not found"}
+            }
+        }
+            
+    },
+    "/championships": {
+        "post": {
+            "tags": ["Championships"],
+            "summary": "Register Championships",
+            "description": "Route for register championships",
+            "requestBody": {
+              "content": {
+                  "application/json": {
+                      "schema": {
+                          "type": "object",
+                          "example": {
+                            
+                            "name": "Copa do Brasil", 
+                            "description": "mata mata", 
+                            "award": "lata de refri", 
+                            "number_teams": 128
+                            
+                          }
+                      }
+                  }
+              }
+          },
+            "responses": {
+                "201": { "description": "created" },
+                "400": { "description": "incorrect request" }
+            }
+        },
+        "get": {
+            "tags": ["Championships"],
+            "summary": "List Championships",
+            "description": "Route for list Championships",
+            "responses": {
+                "200": { "description": "list all" }
+            }
+        }
+            
+    },
+    "/championships/{id}": {
+        "get": {
+            "tags": ["Championships"],
+            "summary": "List Championships by ID",
+            "description": "Route for list teams",
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "200": { "description": "All teams" }
+            }
+        },
+        "delete": {
+            "tags": ["Championships"],
+            "summary": "Delete Championships",
+            "description": "Route delete Championships",
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "204": { "description": "No content" },
+                "404": {"description": "Not found"}
+            }
+        },
+        "put": {
+            "tags": ["Championships"],
+            "summary": "Update Championships",
+            "description": "Route update Championships",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                              
+                                "name": "Champions", 
+                                "description": "do Brsasil", 
+                                "award": "lata de refri"
+                         
                             }
                         }
                     }
