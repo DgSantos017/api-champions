@@ -1,5 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuid } from 'uuid'
+
+import { Team } from '../../../../teams/infra/typeorm/entities/Team'
 
 @Entity('championship')
 class Championship {
@@ -22,11 +24,15 @@ class Championship {
 	@CreateDateColumn()
 		created_at: Date
 
-	constructor(){
-		if(!this.id){
-			this.id = uuid()
+		@ManyToMany(() => Team)
+    @JoinTable()
+			teams: Team[]
+
+		constructor(){
+			if(!this.id){
+				this.id = uuid()
+			}
 		}
-	}
 
 }
 export { Championship }

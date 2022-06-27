@@ -18,23 +18,19 @@ class TeamsRepository implements ITeamsRepository {
 	}	
 
 	async findByNameTeam(name: string): Promise<Team> {
-		const nameTeam = await this.repository.findOne({ name })
-		return nameTeam
+		return await this.repository.findOne({ name })
 	}
 
 	async findByInitialsTeam(initials: string): Promise<Team> {
-		const nameTeam = await this.repository.findOne({ initials })
-		return nameTeam
+		return await this.repository.findOne({ initials })
 	}
 
 	async list(): Promise<Team[]> {
-		const teams = await this.repository.find()
-		return teams
+		return await this.repository.find()
 	}
 
 	async findById(id: string): Promise<Team> {
-		const team = await this.repository.findOne(id)
-		return team
+		return await this.repository.findOne(id)
 	}
 
 	async deleteTeam(initials: string): Promise<void> {

@@ -18,18 +18,15 @@ class ChampionshipsRepository implements IChampionshipRepository {
 	}	
 
 	async findByNameChampionship(name: string): Promise<Championship> {
-		const nameChampionship = await this.repository.findOne({ name })
-		return nameChampionship
+		return await this.repository.findOne({ name })
 	}
 
 	async list(): Promise<Championship[]> {
-		const championship = await this.repository.find()
-		return championship
+		return await this.repository.find()
 	}
 
 	async findById(id: string): Promise<Championship> {
-		const championship = await this.repository.findOne(id)
-		return championship
+		return await this.repository.findOne(id)
 	}
 
 	async deleteChampionship(id: string): Promise<void> {
