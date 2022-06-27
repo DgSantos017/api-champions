@@ -45,7 +45,7 @@
         }
             
     },
-    "/teams/{store_id}": {
+    "/teams/{id}": {
         "get": {
             "tags": ["Team"],
             "summary": "List Team byn ID",
@@ -56,7 +56,21 @@
                 "required": true
             }],
             "responses": {
-                "200": { "description": "Hello" }
+                "200": { "description": "All teams" }
+            }
+        },
+        "delete": {
+            "tags": ["Team"],
+            "summary": "Delete Team",
+            "description": "Route delete team",
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "204": { "description": "No content" },
+                "404": {"description": "Not found"}
             }
         }
             
