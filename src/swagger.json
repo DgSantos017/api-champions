@@ -10,30 +10,56 @@
   },
 
   "paths": {
-    "/cars": {
+    "/teams": {
         "post": {
-            "tags": ["Hello"],
-            "summary": "Hello",
-            "description": "Hello",
+            "tags": ["Team"],
+            "summary": "Register team",
+            "description": "Route for register team",
             "requestBody": {
               "content": {
                   "application/json": {
                       "schema": {
                           "type": "object",
                           "example": {
-                              "name": "Diogo", 
-                              "email": "dio7@gmail.com", 
-                              "password": "1234", 
-                              "driver_license": "xxx-license"
+                            
+                            "initials": "Fla",
+                            "name": "Flamengo"
+                            
                           }
                       }
                   }
               }
           },
             "responses": {
+                "201": { "description": "Hello" },
+                "400": { "description": "incorrect request" }
+            }
+        },
+        "get": {
+            "tags": ["Team"],
+            "summary": "List Teams",
+            "description": "Route for list teams",
+            "responses": {
                 "200": { "description": "Hello" }
             }
-        }    
+        }
+            
+    },
+    "/teams/{store_id}": {
+        "get": {
+            "tags": ["Team"],
+            "summary": "List Team byn ID",
+            "description": "Route for list teams",
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "200": { "description": "Hello" }
+            }
+        }
+            
     }
   }
 }
