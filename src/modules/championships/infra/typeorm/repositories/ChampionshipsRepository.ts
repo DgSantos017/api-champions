@@ -1,6 +1,7 @@
 import { getRepository, Repository } from 'typeorm'
+
 import { Championship } from '../entities/ Championship'
-import { IChampionshipRepository, ICreateChampionship } from './interfaces/IChampionshipsRepository'
+import { IChampionshipRepository, ICreateChampionship, IUpdateChampionsship } from './interfaces/IChampionshipsRepository'
 
 class ChampionshipsRepository implements IChampionshipRepository {
 
@@ -21,19 +22,6 @@ class ChampionshipsRepository implements IChampionshipRepository {
 		return nameChampionship
 	}
 
-	async numberTeamsBase2(number_teams: number): Promise<boolean> {
-		if(
-			number_teams === 4 || number_teams === 8 || number_teams === 16 ||
-			number_teams === 32 || number_teams === 64 || number_teams === 128 ||
-			number_teams === 256 || number_teams === 512 || number_teams === 1024 
-		){
-			return true
-		} 
-		else{
-			return false
-		}
-	}
-
 	async list(): Promise<Championship[]> {
 		const championship = await this.repository.find()
 		return championship
@@ -48,19 +36,9 @@ class ChampionshipsRepository implements IChampionshipRepository {
 		await this.repository.delete(id)
 	}
 
-	async nameLimitedTo25Letters(name: string): Promise<boolean> {
-		if(name.length > 23){
-			return false
-		} else{
-			return true
-		}
+	async updateChampionship(id: string, dataChampionship : IUpdateChampionsship): Promise<Championship> {
+		return this.repository.save({ id, ...dataChampionship })
 	}
-	async updateChampionship(id: string, name: string, description: string, number_teams: number, award: string): Promise<Championship> {
-
-		const championshipUpdate = this.repository.save({ id, name, description, number_teams, award })
-		return championshipUpdate
-	}
-
 }
 
 export { ChampionshipsRepository }

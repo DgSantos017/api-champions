@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { DeleteChampionshipController } from '../../../../../modules/championships/useCases/deleteChampionship/DeleteChampionshipController'
 import { ListChampionshipsController } from '../../../../../modules/championships/useCases/listChampionships/ListChampionshipsController'
 import { ListChampionshipByIdController } from '../../../../../modules/championships/useCases/listChampionshipsById/ListChampionshipsByIdController'

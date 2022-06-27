@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe'
 import { validate as uuidValidate } from 'uuid'
 
-import { AppError } from '../../../../shared/erros/Apperror'
+import { AppError } from '../../../../shared/utils/erros/Apperror'
+import { validateInitials, validateName } from '../../../../shared/utils/validators/ValidateData'
 import { Team } from '../../infra/typeorm/entities/Team'
 import { ITeamsRepository, IUpdateTeam } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
-import { validateInitials, validateName } from '../../validators/ValidateDataTeam'
 
 interface IRequest {
 	id: string
@@ -17,13 +17,16 @@ class UpdateTeamUseCase {
 	constructor(
 		@inject('TeamsRepository')
 		private teamsRepository: ITeamsRepository
-	) { }
+	) {}
 
 	async execute({ id, objTeamData }: IRequest): Promise<Team> {
+
 		if (!uuidValidate(id)) {
 			throw new AppError('invalid UUID')
 		}
+
 		const team = await this.teamsRepository.findById(id)
+
 		if(!team){
 			throw new AppError('team does not exists', 404)
 		} else{
@@ -47,7 +50,7 @@ class UpdateTeamUseCase {
 			}
 
 			if (!validateInitials(objTeamData.initials)) {
-				throw new AppError('the initial team acronyms must be exactly 3 characters long and the team name cannot exceed 25 characters')
+				throw new AppError('the initial team acronyms must be exactly 3 characters')
 			}
 
 			const initialsAlreadyExists = await this.teamsRepository.findByInitialsTeam(objTeamData.initials)
@@ -65,7 +68,7 @@ class UpdateTeamUseCase {
 			 }
 
 			if (!validateName(objTeamData.name)) {
-				throw new AppError('the initial team acronyms must be exactly 3 characters long and the team name cannot exceed 25 characters')
+				throw new AppError('The team name cannot exceed 25 characters')
 			}
 
 			const teamAlreadyExists = await this.teamsRepository.findByNameTeam(objTeamData.name)

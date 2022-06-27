@@ -1,7 +1,8 @@
 
 import { inject, injectable } from 'tsyringe'
 import { validate } from 'uuid'
-import { AppError } from '../../../../shared/erros/Apperror'
+
+import { AppError } from '../../../../shared/utils/erros/Apperror'
 import { Championship } from '../../infra/typeorm/entities/ Championship'
 import { IChampionshipRepository } from '../../infra/typeorm/repositories/interfaces/IChampionshipsRepository'
 

@@ -2,9 +2,10 @@ import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import 'reflect-metadata'
 import swaggerUi from 'swagger-ui-express'
+
 import swaggerFile from '../../../swagger.json'
-import '../../container'
-import { AppError } from '../../erros/Apperror'
+import '../../utils/container'
+import { AppError } from '../../utils/erros/Apperror'
 import createConnection from '../typeorm'
 import { router } from './routes'
 

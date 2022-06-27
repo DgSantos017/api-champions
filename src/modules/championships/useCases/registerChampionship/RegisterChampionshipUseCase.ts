@@ -1,10 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import { AppError } from '../../../../shared/erros/Apperror'
+
+import { AppError } from '../../../../shared/utils/erros/Apperror'
+import { numberTeamsInChampionship, validateName } from '../../../../shared/utils/validators/ValidateData'
 import { Championship } from '../../infra/typeorm/entities/ Championship'
 import { IChampionshipRepository, ICreateChampionship } from '../../infra/typeorm/repositories/interfaces/IChampionshipsRepository'
-
-
-
 @injectable()
 class RegisterChampionshipUseCase {
 
@@ -22,13 +21,11 @@ class RegisterChampionshipUseCase {
 			throw new AppError('Championship Already Exists', 409)
 		}
 
-		const nameLimited =  await this.ChampionshipRepository.nameLimitedTo25Letters(firstLetterUppercase)
-		if(nameLimited === false){
-			throw new AppError('a Championship can have a maximum of 25 letters')
+		if (!validateName(firstLetterUppercase)) {
+			throw new AppError('The team name cannot exceed 25 characters')
 		}
 
-		const numberBase2 = await this.ChampionshipRepository.numberTeamsBase2(number_teams)
-		if(numberBase2 === false){
+		if(!numberTeamsInChampionship(number_teams)){
 			throw new AppError('the championship can only be registered if it has a number of teams greater than 4, less than 1024 and base 2')
 		}
 

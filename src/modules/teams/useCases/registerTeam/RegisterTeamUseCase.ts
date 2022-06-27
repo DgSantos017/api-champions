@@ -1,8 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import { AppError } from '../../../../shared/erros/Apperror'
+
+import { AppError } from '../../../../shared/utils/erros/Apperror'
+import { validateInitials, validateName } from '../../../../shared/utils/validators/ValidateData'
 import { Team } from '../../infra/typeorm/entities/Team'
 import { ITeamsRepository } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
-import { validateInitials, validateName } from '../../validators/ValidateDataTeam'
 
 interface IRequest {
 	initials: string
