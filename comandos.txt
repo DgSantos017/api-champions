@@ -1,0 +1,4 @@
+yarn
+docker compose up -d
+yarn typeorm migration:run
+Docker Compose version v2.4.1
