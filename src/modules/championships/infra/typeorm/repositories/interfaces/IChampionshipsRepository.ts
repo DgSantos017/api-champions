@@ -10,8 +10,8 @@ export interface ICreateChampionship {
 export interface IUpdateChampionsship{
   name?: string
   description?: string
-  number_teams?: number
   award?: string
+  number_teams?: number
 }
 
 interface IChampionshipRepository {

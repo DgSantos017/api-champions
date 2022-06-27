@@ -8,10 +8,10 @@ class UpdateChampionshipController {
 	async handle(req: Request, res: Response): Promise<Response>{
 
 		const  { id } = req.params
-		const objTeamData = req.body
+		const dataChampionship = req.body
   
 		const updateChampionshipUseCase = container.resolve(UpdateChampionshipUseCase)
-		const championship = await updateChampionshipUseCase.execute({id, objTeamData})
+		const championship = await updateChampionshipUseCase.execute({id, dataChampionship})
 
 		return res.json(championship)
     

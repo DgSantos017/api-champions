@@ -34,7 +34,6 @@ class UpdateChampionshipUseCase {
 				championship.name.toUpperCase() === dataChampionship.name?.toUpperCase() 
 				&& championship.description === dataChampionship.description
 				&& championship.award === dataChampionship.award
-				&& championship.number_teams === dataChampionship.number_teams
 			){
 				return championship
 			}
@@ -78,9 +77,7 @@ class UpdateChampionshipUseCase {
 
 		if (dataChampionship.number_teams) {
 
-			if(championship.number_teams === dataChampionship.number_teams && Object.keys(dataChampionship).length === 1){
-				return championship
-			 }
+			throw new AppError('number of teams cannot be updated')
 		}
 
 		return await this.championshipRepository.updateChampionship(id, dataChampionship)
