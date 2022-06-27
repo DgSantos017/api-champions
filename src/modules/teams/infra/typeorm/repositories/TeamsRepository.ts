@@ -1,6 +1,7 @@
 import { getRepository, Repository } from 'typeorm'
+
 import { Team } from '../entities/Team'
-import { ICreateTeam, ITeamsRepository } from './interfaces/ITeamsRepository'
+import { ICreateTeam, ITeamsRepository, IUpdateTeam } from './interfaces/ITeamsRepository'
 
 class TeamsRepository implements ITeamsRepository {
 
@@ -40,17 +41,8 @@ class TeamsRepository implements ITeamsRepository {
 		await this.repository.delete(initials)
 	}
 
-	async limitedNumberLetters(initials: string, name: string): Promise<boolean> {
-		if(initials.length === 3 && name.length < 26){
-			return true
-		} else{
-			return false
-		}
-	}
-
-	async updateTeam(id: string, initials: string, name: string): Promise<Team> {
-		const teamUpdate = this.repository.save({ id, initials, name })
-		return teamUpdate
+	async updateTeam(id: string, dataObjTeam: IUpdateTeam): Promise<Team> {
+		return this.repository.save({ id, ...dataObjTeam })
 	}
 	
 }

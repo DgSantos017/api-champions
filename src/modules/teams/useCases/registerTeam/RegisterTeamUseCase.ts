@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe'
 import { AppError } from '../../../../shared/erros/Apperror'
 import { Team } from '../../infra/typeorm/entities/Team'
 import { ITeamsRepository } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
+import { validateInitials, validateName } from '../../validators/ValidateDataTeam'
 
 interface IRequest {
 	initials: string
@@ -31,8 +32,7 @@ class RegisterTeamUseCase {
 			throw new AppError('Team name already exists', 409)
 		}
 
-		const limitedNumber =  await this.teamsRepository.limitedNumberLetters(initialsUppercase, firstLetterUppercase)
-		if(limitedNumber === false){
+		if(!(validateInitials(initialsUppercase) && validateName(firstLetterUppercase))){
 			throw new AppError('the initial team acronyms must be exactly 3 characters long and the team name cannot exceed 25 characters')
 		}
 

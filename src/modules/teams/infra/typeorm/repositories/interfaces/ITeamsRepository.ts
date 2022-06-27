@@ -6,15 +6,19 @@ export interface ICreateTeam{
   number_wins: number
 }
 
+export interface IUpdateTeam{
+  initials?: string
+  name?: string
+}
+
 interface ITeamsRepository {
   register(data: ICreateTeam): Promise<Team>
   findByNameTeam(name: string): Promise<Team>
   findByInitialsTeam(initials: string): Promise<Team>
-  limitedNumberLetters(initials: string, name: string): Promise<boolean>
   list(): Promise<Team[]> 
   findById(id: string): Promise<Team>
   deleteTeam(initials: string): Promise<void> 
-  updateTeam(id: string, initials: string, name:string): Promise<Team>
+  updateTeam(id: string, dataObjTeam: IUpdateTeam): Promise<Team>
 }
 
 export { ITeamsRepository }

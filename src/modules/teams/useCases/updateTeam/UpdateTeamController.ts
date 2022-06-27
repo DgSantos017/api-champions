@@ -7,10 +7,10 @@ class UpdateTeamController {
 	async handle(req: Request, res: Response): Promise<Response>{
 
 		const  { id } = req.params
-		const { initials, name } = req.body
+		const objTeamData = req.body
   
 		const updateTeamUseCase = container.resolve(UpdateTeamUseCase)
-		const result = await updateTeamUseCase.execute({id, initials, name})
+		const result = await updateTeamUseCase.execute({id, objTeamData})
 
 		return res.json(result)
     
