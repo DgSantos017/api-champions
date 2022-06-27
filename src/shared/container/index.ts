@@ -13,4 +13,3 @@ container.registerSingleton<IChampionshipRepository>(
 	'ChampionshipRepository',
 	ChampionshipsRepository
 )
-

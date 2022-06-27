@@ -4,6 +4,8 @@ import { AppError } from '../../../../shared/erros/Apperror'
 import { Team } from '../../infra/typeorm/entities/Team'
 import { ITeamsRepository } from '../../infra/typeorm/repositories/interfaces/ITeamsRepository'
 
+
+
 interface IRequest {
 	initials: string
 	name: string
@@ -43,7 +45,7 @@ class UpdateTeamUseCase {
 			throw new AppError('the initial team acronyms must be exactly 3 characters long and the team name cannot exceed 25 characters')
 		}
 		
-		const teamUpdated = await this.teamsRepository.updateTeam(id, initials, name)
+		const teamUpdated = await this.teamsRepository.updateTeam(id, initialsUppercase, firstLetterUppercase)
 
 		return teamUpdated
 	}

@@ -10,12 +10,12 @@ export interface ICreateChampionship {
 interface IChampionshipRepository {
   register(data: ICreateChampionship): Promise<Championship>
   findByNameChampionship(name: string): Promise<Championship>
-  nameLimitedTo23Letters(name: string): Promise<boolean>
+  nameLimitedTo25Letters(name: string): Promise<boolean>
   numberTeamsBase2(number_teams: number): Promise<boolean>
   list(): Promise<Championship[]> 
   findById(id: string): Promise<Championship>
   deleteChampionship(id: string): Promise<void>
-  updateChampionship(id: string, initials: string, name:string): Promise<Championship> 
+  updateChampionship(id: string, name: string, description: string, number_teams: number, award: string): Promise<Championship> 
 }
 
 export { IChampionshipRepository }

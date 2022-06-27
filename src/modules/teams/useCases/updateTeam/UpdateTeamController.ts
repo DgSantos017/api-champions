@@ -8,7 +8,7 @@ class UpdateTeamController {
 
 		const  { id } = req.params
 		const { initials, name } = req.body
-    
+  
 		const updateTeamUseCase = container.resolve(UpdateTeamUseCase)
 		const result = await updateTeamUseCase.execute({id, initials, name})
 

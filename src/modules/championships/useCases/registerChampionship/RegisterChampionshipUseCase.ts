@@ -3,6 +3,8 @@ import { AppError } from '../../../../shared/erros/Apperror'
 import { Championship } from '../../infra/typeorm/entities/ Championship'
 import { IChampionshipRepository, ICreateChampionship } from '../../infra/typeorm/repositories/interfaces/IChampionshipsRepository'
 
+
+
 @injectable()
 class RegisterChampionshipUseCase {
 
@@ -20,9 +22,9 @@ class RegisterChampionshipUseCase {
 			throw new AppError('Championship Already Exists', 409)
 		}
 
-		const nameLimited =  await this.ChampionshipRepository.nameLimitedTo23Letters(firstLetterUppercase)
+		const nameLimited =  await this.ChampionshipRepository.nameLimitedTo25Letters(firstLetterUppercase)
 		if(nameLimited === false){
-			throw new AppError('a Championship can have a maximum of 23 letters')
+			throw new AppError('a Championship can have a maximum of 25 letters')
 		}
 
 		const numberBase2 = await this.ChampionshipRepository.numberTeamsBase2(number_teams)

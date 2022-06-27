@@ -2,9 +2,6 @@ import { getRepository, Repository } from 'typeorm'
 import { Team } from '../entities/Team'
 import { ICreateTeam, ITeamsRepository } from './interfaces/ITeamsRepository'
 
-
-
-
 class TeamsRepository implements ITeamsRepository {
 
 	private repository: Repository<Team>
@@ -52,10 +49,7 @@ class TeamsRepository implements ITeamsRepository {
 	}
 
 	async updateTeam(id: string, initials: string, name: string): Promise<Team> {
-		
-		// const team = await this.repository.findOne({ where: { id } })
 		const teamUpdate = this.repository.save({ id, initials, name })
-
 		return teamUpdate
 	}
 	

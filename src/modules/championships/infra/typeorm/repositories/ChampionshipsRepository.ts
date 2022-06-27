@@ -21,14 +21,6 @@ class ChampionshipsRepository implements IChampionshipRepository {
 		return nameChampionship
 	}
 
-	async nameLimitedTo23Letters(name: string): Promise<boolean> {
-		if(name.length > 23){
-			return false
-		} else{
-			return true
-		}
-	}
-
 	async numberTeamsBase2(number_teams: number): Promise<boolean> {
 		if(
 			number_teams === 4 || number_teams === 8 || number_teams === 16 ||
@@ -54,6 +46,19 @@ class ChampionshipsRepository implements IChampionshipRepository {
 
 	async deleteChampionship(id: string): Promise<void> {
 		await this.repository.delete(id)
+	}
+
+	async nameLimitedTo25Letters(name: string): Promise<boolean> {
+		if(name.length > 23){
+			return false
+		} else{
+			return true
+		}
+	}
+	async updateChampionship(id: string, name: string, description: string, number_teams: number, award: string): Promise<Championship> {
+
+		const championshipUpdate = this.repository.save({ id, name, description, number_teams, award })
+		return championshipUpdate
 	}
 
 }
