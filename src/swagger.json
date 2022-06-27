@@ -72,6 +72,34 @@
                 "204": { "description": "No content" },
                 "404": {"description": "Not found"}
             }
+        },
+        "put": {
+            "tags": ["Team"],
+            "summary": "Update Team",
+            "description": "Route update team",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "example": {
+                              
+                              "initials": "CRF",
+                              "name": "Clube Regatas Flamengo"
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [{"in": "path", "name": "id", "schema": {
+                "type": "string"
+            },
+                "required": true
+            }],
+            "responses": {
+                "200": { "description": "updated" },
+                "404": {"description": "Not found"}
+            }
         }
             
     }
